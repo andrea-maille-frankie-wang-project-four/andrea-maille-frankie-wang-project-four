@@ -2,7 +2,7 @@
 const app = {};
 app.apiEndPoint = "https://api.walmartlabs.com/v1/search?";
 app.apiKey = "rk3f9sm8az24zz3wf7e5sesc";
-
+app.realPriceArray =[];
 
 app.htmlStringMaking = function (dataArray){
     $('.game-content').empty();
@@ -81,10 +81,16 @@ app.apiCall = function(category) {
         const threeItems = app.randomChooseThree(totalArray);
         console.log(threeItems);
         
-        const realPriceArray = threeItems.map(function (item) {
-        return (item.salePrice*1.35).toFixed(2);
-    })
-        console.log(realPriceArray);
+    //     app.realPriceArray = threeItems.map(function (item) {
+    //     return Number(item.salePrice*1.35.toFixed(2));
+       
+    // })
+        app.realPriceArray =[];
+        threeItems.forEach(item=>{
+         app.realPriceArray.push(+(item.salePrice * 1.35).toFixed(2));
+            
+        })
+        console.log(app.realPriceArray);
         
         app.htmlStringMaking(threeItems);
         
@@ -105,16 +111,27 @@ app.storeUserInput =function (){
             alert('Oops! Check your answers, again!')
             
         } else {
-            
-        )
+            for (let i = 0; i < userGuessArray.length; i++) {
+                const userGuessDecimal = +userGuessArray[i].toFixed(2);
+                console.log(userGuessDecimal, typeof(userGuessDecimal));
+                //if user guess the price exactly right, tell users they win
+                if (userGuessDecimal ===app.realPriceArray[i]) {
+                    alert("you win!");
+                //if user is five dollars lower than actual price, praise
+                }else if (app.realPriceArray[i]>userGuessDecimal&&app.realPriceArray[i] - userGuessDecimal <=5){
+                    alert("you are very close!");
+                //if user is less ten dollars away than actual price, small clap
+                } else if (app.realPriceArray[i] >userGuessDecimal&&app.realPriceArray[i] -userGuessDecimal <=10){
+                    alert("not bad");
+                //if users' guess is over or far away from actual price, indicates the result.
+                }else{
+                    alert("😢");
+                }
+                
+            }
+        }
 
-        console.log(userGuessArray)
-        
-        // else (userGuessArray.indexOf(Number)) 
-        //     console.log('YEAH');
-        // }
-        
-        
+        console.log(userGuessArray);       
         
 
         
