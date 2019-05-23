@@ -10,7 +10,7 @@ app.htmlStringMaking = function (dataArray){
         const $card = $(`<fieldset>`).addClass('inner-wrapper');
         const $image = $(`<img class="product-image">`).attr('src',data.largeImage);
         const $name = $(`<p class="product-name">${data.name}</p>`); 
-        const $userGuess = $(`<input type="number" id="userGuess" name="userGuess" placeholder="Guess the Price"></input>`);
+        const $userGuess = $(`<input type="text" id="userGuess" name="userGuess" placeholder="Guess the Price"></input>`);
         const $userGuessLabel = $(`<label for="userGuess" class="visually-hidden">Guess the price of the item</label>`);
         $card.append($image, $name, $userGuess, $userGuessLabel);
         // console.log($card);
@@ -26,28 +26,37 @@ app.htmlStringMaking = function (dataArray){
 app.selectCategory = function () {
     $('.start-game').on('click', function(event){
         event.preventDefault();
-        const selectedCategory = $('input[name=category]:checked').val();
-        app.apiCall(selectedCategory);
-        
-     
+
+        // store user category choice
+        const category = $('input[name=category]:checked').val();
+
+        if (category === undefined){
+            alert(`Please select your category of items`);
+        } else {
+            const selectedCategory = $('input[name=category]:checked').val();
+            app.apiCall(selectedCategory);
+        }
     })
 }
-
+// 
 
 
 app.randomChooseThree = function (dataArray) {
+    // indexArray is 20 though we ask for 25 items, in case of error
     const indexArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     const chosenIndexArray = [];
+
     for (i = 1; i <= 3; i++) {
         const chosenIndex = Math.floor((Math.random() * (19 - i)) + 1);
         chosenIndexArray.push(indexArray[chosenIndex]);
         indexArray[chosenIndex] = indexArray[20 - i];
-        
     }
+
     const selectedItems = [];
     chosenIndexArray.forEach(index => {
         selectedItems.push(dataArray[index]);
     })
+
     console.log(chosenIndexArray);
     
     return selectedItems ;
@@ -63,7 +72,7 @@ app.apiCall = function(category) {
             apiKey: app.apiKey,
             query:category,
             sort:"bestseller",
-            numItems:20,
+            numItems:25,
 
         }
     }).then(function (data) {
@@ -73,7 +82,7 @@ app.apiCall = function(category) {
         console.log(threeItems);
         
         const realPriceArray = threeItems.map(function (item) {
-        return item.salePrice*1.35;
+        return (item.salePrice*1.35).toFixed(2);
     })
         console.log(realPriceArray);
         
@@ -86,10 +95,28 @@ app.apiCall = function(category) {
 app.storeUserInput =function (){
     $("form.game-content").on("submit", function(event){
         event.preventDefault();
-        const userGuessArray =$("input[type='number']").map(function(input){
-            return input;
+
+        const userGuessArray = $("input[type='text']").map(function(index, input){
+            return parseFloat($(input).val());
+        }); 
+
+
+        if (userGuessArray.index(NaN) !== -1) {
+            alert('Oops! Check your answers, again!')
             
-        });
+        } else {
+            
+        )
+
+        console.log(userGuessArray)
+        
+        // else (userGuessArray.indexOf(Number)) 
+        //     console.log('YEAH');
+        // }
+        
+        
+        
+
         
         
     })
