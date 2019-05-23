@@ -7,13 +7,13 @@ app.apiKey = "rk3f9sm8az24zz3wf7e5sesc";
 app.htmlStringMaking = function (dataArray){
     $('.game-content').empty();
     dataArray.forEach(data => {
-        const $card = $(`<div>`).addClass('inner-wrapper');
+        const $card = $(`<fieldset>`).addClass('inner-wrapper');
         const $image = $(`<img class="product-image">`).attr('src',data.largeImage);
         const $name = $(`<p class="product-name">${data.name}</p>`); 
         const $userGuess = $(`<input type="number" id="userGuess" name="userGuess" placeholder="Guess the Price"></input>`);
         const $userGuessLabel = $(`<label for="userGuess" class="visually-hidden">Guess the price of the item</label>`);
         $card.append($image, $name, $userGuess, $userGuessLabel);
-        console.log($card);
+        // console.log($card);
     
         $('.game-content').append($card);
     })
@@ -48,8 +48,9 @@ app.randomChooseThree = function (dataArray) {
     chosenIndexArray.forEach(index => {
         selectedItems.push(dataArray[index]);
     })
+    console.log(chosenIndexArray);
     
-    return(selectedItems);
+    return selectedItems ;
 
 }
 
@@ -69,6 +70,12 @@ app.apiCall = function(category) {
         const totalArray = data.items; 
         
         const threeItems = app.randomChooseThree(totalArray);
+        console.log(threeItems);
+        
+        const realPriceArray = threeItems.map(function (item) {
+        return item.salePrice*1.35;
+    })
+        console.log(realPriceArray);
         
         app.htmlStringMaking(threeItems);
         
@@ -76,9 +83,21 @@ app.apiCall = function(category) {
         console.log("nah", error);
     })
 }
+app.storeUserInput =function (){
+    $("form.game-content").on("submit", function(event){
+        event.preventDefault();
+        const userGuessArray =$("input[type='number']").map(function(input){
+            return input;
+            
+        });
+        
+        
+    })
+}
 
 app.init = function() {
     app.selectCategory();
+    app.storeUserInput();
     
 }
 
