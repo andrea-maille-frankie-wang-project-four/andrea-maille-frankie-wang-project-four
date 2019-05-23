@@ -73,7 +73,7 @@ app.apiCall = function(category) {
         app.htmlStringMaking(threeItems);
         
     }).fail(function(error){
-        console.log("nah");
+        console.log("nah", error);
     })
 }
 
