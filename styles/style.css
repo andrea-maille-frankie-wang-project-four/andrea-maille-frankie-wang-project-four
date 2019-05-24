@@ -208,6 +208,9 @@ button {
   border-radius: 3px;
   background-color: #225c35;
   color: #f4f4f4; }
+  button:hover {
+    background-color: #225c35;
+    color: #ffe438; }
 
 header {
   width: 100%;

@@ -39,6 +39,10 @@ button {
     border-radius: 3px;
     background-color:$shadowColor;
     color:$white;
+    &:hover {
+        background-color:$shadowColor;
+        color:$accentColor;
+    }
 }
 // Header Styles 
 header {
