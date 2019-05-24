@@ -197,3 +197,14 @@ fieldset {
 
 footer {
   text-align: center; }
+
+
+  .card {
+    background-color: teal;
+  }
+
+  .game-results {
+    background-color:tomato;
+    width:100%;
+    height:500px;
+  }
