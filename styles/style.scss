@@ -1,33 +1,74 @@
 @import "partials/setup";
+@import "partials/variables";
+@import "partials/typography";
 
-@mixin alignment ($flex-direction, $justify-content, $align-items, $text-align) {
-    display: flex;
-    flex-direction: $flex-direction;
-    justify-content: $justify-content;
-    align-items: $align-items;
-    text-align: $text-align;
-}
+// General Styles 
 
-
-html {
-    font-size: 125%;
-}
-p {
-    margin:0; 
-    padding:0; 
-}
 .hide {
     display: none;
 }
 
+img {
+    width:100%;
+    max-width:100%;
+}
+
+.wrapper {
+    width: 80%;
+    max-width: 1440px; 
+    margin: 0 auto;
+}
+
+// Header Styles 
 header {
     width:100%;
     height:100vh;
+    background-color:$secondaryColor;
+    @include alignment (column, center, center, center);
+
     .header-content {
         @include alignment (column, center, center, center);
-        margin-top:100px;
+        width:75%;
     }
 }
+
+.header-title {
+    width:100%;
+    display: block;
+    // margin:0 auto;
+    border: 10px dotted $accentColor;
+    border-radius: 10px;
+        h1 {
+            text-align: center;
+            color:$mainColor;
+            padding:0px 25px;
+            text-shadow: 
+            0 1px 0px $accentColor, 
+            1px 0 0px $accentColor, 
+            1px 2px 1px $accentColor, 
+            2px 1px 1px $accentColor, 
+            2px 3px 2px $accentColor, 
+            3px 2px 2px $accentColor, 
+            3px 4px 2px $accentColor, 
+            4px 3px 3px $accentColor, 
+            4px 5px 3px $accentColor, 
+            5px 4px 2px $accentColor, 
+            5px 6px 2px $accentColor, 
+            6px 5px 2px $accentColor, 
+            6px 7px 1px $accentColor, 
+            7px 6px 1px $accentColor, 
+            7px 8px 0px $accentColor, 
+            8px 7px 0px $accentColor;
+        }
+}
+
+.header-description {
+    p{
+        color:$white;
+        padding:20px;
+    }
+}
+// Form - Categories 
 
 fieldset {
     @include alignment (row, center, center, center);
@@ -41,11 +82,7 @@ fieldset {
     }
 }
 
-.wrapper {
-    width: 80%;
-    max-width: 1440px; 
-    margin: 0 auto;
-}
+
 
 
 footer { 

@@ -1,0 +1,21 @@
+// Colors
+
+$mainColor: #349052;
+$accentColor: #ffe438;
+$secondaryColor: #79b791;
+$white: #f4f4f4;
+$black: #36393b;
+
+@mixin alignment ($flex-direction, $justify-content, $align-items, $text-align) {
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    text-align: $text-align;
+}
+
+@mixin color ($color, $background-color){
+    color: $color;
+    background-color: $background-color;
+}
+

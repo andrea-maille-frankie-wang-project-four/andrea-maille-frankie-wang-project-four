@@ -1,0 +1,27 @@
+html {
+    font-size: 125%;
+}
+
+@mixin displayFont ($size) {
+    font-size: ($size/20) * 1rem;
+    font-size: $size * 1px;
+    font-family: 'Sansita', sans-serif;
+}
+
+@mixin bodyFont ($size) {
+    font-size: ($size/20) * 1rem;
+    font-size: $size * 1px;
+    font-family: 'Arimo', sans-serif;
+}
+
+h1 {
+    @include displayFont(100);
+
+}
+
+p {
+    @include bodyFont(20);
+    margin:0; 
+    padding:0; 
+}
+
