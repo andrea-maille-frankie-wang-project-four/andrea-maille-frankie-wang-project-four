@@ -25,6 +25,7 @@ app.htmlStringMaking = function (dataArray){
 
 app.selectCategory = function () {
     $('.start-game').on('click', function(event){
+
         event.preventDefault();
 
         // store user category choice
@@ -36,6 +37,12 @@ app.selectCategory = function () {
             const selectedCategory = $('input[name=category]:checked').val();
             app.apiCall(selectedCategory);
         }
+
+        $('html, body').animate({
+            scrollTop: $('.game-content').offset().top
+        }, 3000);
+
+
     })
 }
 // 
@@ -106,38 +113,73 @@ app.storeUserInput =function (){
             return parseFloat($(input).val());
         }); 
 
+        console.log(userGuessArray);
+        
 
-        if (userGuessArray.index(NaN) !== -1) {
-            alert('Oops! Check your answers, again!')
-            
-        } else {
-            for (let i = 0; i < userGuessArray.length; i++) {
-                const userGuessDecimal = +userGuessArray[i].toFixed(2);
-                console.log(userGuessDecimal, typeof(userGuessDecimal));
-                //if user guess the price exactly right, tell users they win
-                if (userGuessDecimal ===app.realPriceArray[i]) {
-                    alert("you win!");
-                //if user is five dollars lower than actual price, praise
-                }else if (app.realPriceArray[i]>userGuessDecimal&&app.realPriceArray[i] - userGuessDecimal <=5){
-                    alert("you are very close!");
-                //if user is less ten dollars away than actual price, small clap
-                } else if (app.realPriceArray[i] >userGuessDecimal&&app.realPriceArray[i] -userGuessDecimal <=10){
-                    alert("not bad");
-                //if users' guess is over or far away from actual price, indicates the result.
-                }else{
-                    alert("😢");
-                }
-                
+        let notNumber = false;
+
+        for (let i=0; i< userGuessArray.length; i++){
+            const number = userGuessArray[i];
+            if (isNaN(number)){
+                notNumber = true;
             }
         }
+        
+        // userGuessArray(function(number){
+        //     if (number === NaN) {
+        //         return false;
+        //     }
+            
+        // });
 
-        console.log(userGuessArray);       
+        console.log(notNumber);
+        
+
+        if (notNumber === false) {
+            for (let i = 0; i < userGuessArray.length; i++) {
+                const userGuessDecimal = +userGuessArray[i].toFixed(2);
+                
+                console.log(userGuessDecimal, typeof (userGuessDecimal));
+                //if user guess the price exactly right, tell users they win
+                if (userGuessDecimal === app.realPriceArray[i]) {
+                    alert("you win!");
+                    
+                    //if user is five dollars lower than actual price, praise
+                    // Works 
+                } else if (app.realPriceArray[i] > userGuessDecimal && app.realPriceArray[i] - userGuessDecimal <= 5) {
+                    alert("you are very close!");
+                    console.log((app.realPriceArray[i] - userGuessDecimal).toFixed(2));
+
+                    //if user is less ten dollars away than actual price, small clap
+
+
+                } else if (app.realPriceArray[i] > userGuessDecimal && app.realPriceArray[i] - userGuessDecimal <= 10) {
+                    alert("not bad");
+                    console.log((app.realPriceArray[i] - userGuessDecimal).toFixed(2));
+                    //if users' guess is over or far away from actual price, indicates the result.
+                } else {
+                    if (app.realPriceArray[i] < userGuessDecimal) {
+                        console.log((userGuessDecimal - app.realPriceArray[i]).toFixed(2));
+                    } else {
+                        console.log((app.realPriceArray[i] - userGuessDecimal).toFixed(2));
+                    }
+                    alert("😢");
+                }
+            }
+            
+        } else {
+            alert('Oops! Check your answers, again!');
+        }
+
+
         
 
         
         
     })
 }
+
+
 
 app.init = function() {
     app.selectCategory();
