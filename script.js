@@ -20,24 +20,43 @@ app.realPriceArray =[];
 
 app.htmlStringMaking = function (dataArray){
     $('.game-content').empty();
-    dataArray.forEach(data => {
+    for(i=0;i<dataArray.length;i++){
+        const data = dataArray[i];
         const $card = $('<fieldset>').addClass('card');
         const $productInfo = $('<div>').addClass('product-info');
         const $imageContainer = $('<div>').addClass('image-container');
-        const $image = $(`<img class="product-image">`).attr('src',data.largeImage);
+        const $image = $(`<img class="product-image">`).attr('src',data.largeImage).attr("alt", "");
         const $name = $(`<p class="product-name">${data.name}</p>`); 
         const $userGuess = $(`<input type="text" id="userGuess" name="userGuess" placeholder="Guess the Price"></input>`);
         const $userGuessLabel = $(`<label for="userGuess" class="visually-hidden">Guess the price of the item</label>`);
-        const $gameResults = $('<div>').addClass('game-results');
+        const $gameResults = $('<div>').addClass('game-results').addClass(`game-results-${i+1}`);
 
         $imageContainer.append($image);
 
-        $productInfo.append($imageContainer, $name, $userGuess, $userGuessLabel, $gameResults);
+        $productInfo.append($imageContainer, $name, $userGuess, $userGuessLabel);
 
-        $card.append($productInfo);
-        
+        $card.append($productInfo, $gameResults);
+
         $('.game-content').append($card);
-    })
+    }
+    // dataArray.forEach(data => {
+    //     const $card = $('<fieldset>').addClass('card');
+    //     const $productInfo = $('<div>').addClass('product-info');
+    //     const $imageContainer = $('<div>').addClass('image-container');
+    //     const $image = $(`<img class="product-image">`).attr('src',data.largeImage);
+    //     const $name = $(`<p class="product-name">${data.name}</p>`); 
+    //     const $userGuess = $(`<input type="text" id="userGuess" name="userGuess" placeholder="Guess the Price"></input>`);
+    //     const $userGuessLabel = $(`<label for="userGuess" class="visually-hidden">Guess the price of the item</label>`);
+    //     const $gameResults = $('<div>').addClass(`game-results-${i+1}`);
+
+    //     $imageContainer.append($image);
+
+    //     $productInfo.append($imageContainer, $name, $userGuess, $userGuessLabel, $gameResults);
+
+    //     $card.append($productInfo);
+        
+    //     $('.game-content').append($card);
+    // })
     
     const $submitGuess = $(`<button class="submit-form">Submit</button>`);
 
@@ -187,28 +206,48 @@ app.storeUserInput =function (){
                     const $priceDifference = $(`<p class="price-difference-match">Price Difference: $0!</p>`)
                     const $retailPrice = $(`<p class="retail-price">Retail Price:${app.realPriceArray[i]}</p>`)
 
-                    $('.game-results').append($emotion, $feedbackSentence, $priceDifference, $retailPrice);
+                    $(`.game-results-${i+1}`).append($emotion, $feedbackSentence, $priceDifference, $retailPrice);
                     
                     //if user is five dollars lower than actual price, praise
                     // Works 
                 } else if (app.realPriceArray[i] > userGuessDecimal && app.realPriceArray[i] - userGuessDecimal <= 5) {
-                    alert("you are very close!");
-                    console.log((app.realPriceArray[i] - userGuessDecimal).toFixed(2));
-                    const $priceDifference = $(`<p></p>`)
+                    const priceComparison = (app.realPriceArray[i] - userGuessDecimal).toFixed(2);
+                    const $emotion = $(`<p><i class="far fa-smile-beam"></i></p>`);
+                    const $feedbackSentence = $(`<p>You are only less than 5 dollars away!Good job!</p>`)
+                    const $priceDifference = $(`<p class="price-difference-match">Price Difference: $${priceComparison}</p>`)
+                    const $retailPrice = $(`<p class="retail-price">Retail Price:${app.realPriceArray[i]}</p>`)
+
+                    $(`.game-results-${i + 1}`).append($emotion, $feedbackSentence, $priceDifference, $retailPrice);
                     //if user is less ten dollars away than actual price, small clap
 
 
                 } else if (app.realPriceArray[i] > userGuessDecimal && app.realPriceArray[i] - userGuessDecimal <= 10) {
-                    alert("not bad");
-                    console.log((app.realPriceArray[i] - userGuessDecimal).toFixed(2));
+                    const priceComparison = (app.realPriceArray[i] - userGuessDecimal).toFixed(2);
+                    const $emotion = $(`<p><i class="far fa-grin"></i></p>`);
+                    const $feedbackSentence = $(`<p>You are only less than 10 dollars away! Not bad</p>`)
+                    const $priceDifference = $(`<p class="price-difference-match">Price Difference: $${priceComparison}</p>`)
+                    const $retailPrice = $(`<p class="retail-price">Retail Price:${app.realPriceArray[i]}</p>`)
+
+                    $(`.game-results-${i + 1}`).append($emotion, $feedbackSentence, $priceDifference, $retailPrice);
                     //if users' guess is over or far away from actual price, indicates the result.
                 } else {
                     if (app.realPriceArray[i] < userGuessDecimal) {
-                        console.log((userGuessDecimal - app.realPriceArray[i]).toFixed(2));
+                        const priceComparison = (userGuessDecimal - app.realPriceArray[i]).toFixed(2);
+                        const $emotion = $(`<p><i class="far fa-frown"></i></p>`);
+                        const $feedbackSentence = $(`<p>You went over the retail price!</p>`)
+                        const $priceDifference = $(`<p class="price-difference-match">Price Difference: $${priceComparison}</p>`)
+                        const $retailPrice = $(`<p class="retail-price">Retail Price:${app.realPriceArray[i]}</p>`)
+
+                        $(`.game-results-${i + 1}`).append($emotion, $feedbackSentence, $priceDifference, $retailPrice);
                     } else {
-                        console.log((app.realPriceArray[i] - userGuessDecimal).toFixed(2));
+                        const priceComparison = (app.realPriceArray[i] - userGuessDecimal).toFixed(2);
+                        const $emotion = $(`<p><i class="far fa-meh"></i></p>`);
+                        const $feedbackSentence = $(`<p>You are really far away! Try again</p>`)
+                        const $priceDifference = $(`<p class="price-difference-match">Price Difference: $${priceComparison}</p>`)
+                        const $retailPrice = $(`<p class="retail-price">Retail Price:${app.realPriceArray[i]}</p>`)
+
+                        $(`.game-results-${i + 1}`).append($emotion, $feedbackSentence, $priceDifference, $retailPrice);
                     }
-                    alert("😢");
                 }
 
                 
