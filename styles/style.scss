@@ -23,7 +23,7 @@ img {
 header {
     width:100%;
     height:100vh;
-    background-color:$secondaryColor;
+    background-color:$mainColor;
     @include alignment (column, center, center, center);
 
     .header-content {
@@ -36,29 +36,29 @@ header {
     width:100%;
     display: block;
     // margin:0 auto;
-    border: 10px dotted $accentColor;
+    border: 10px dotted $white;
     border-radius: 10px;
         h1 {
             text-align: center;
-            color:$mainColor;
+            color:$accentColor;
             padding:0px 25px;
             text-shadow: 
-            0 1px 0px $accentColor, 
-            1px 0 0px $accentColor, 
-            1px 2px 1px $accentColor, 
-            2px 1px 1px $accentColor, 
-            2px 3px 2px $accentColor, 
-            3px 2px 2px $accentColor, 
-            3px 4px 2px $accentColor, 
-            4px 3px 3px $accentColor, 
-            4px 5px 3px $accentColor, 
-            5px 4px 2px $accentColor, 
-            5px 6px 2px $accentColor, 
-            6px 5px 2px $accentColor, 
-            6px 7px 1px $accentColor, 
-            7px 6px 1px $accentColor, 
-            7px 8px 0px $accentColor, 
-            8px 7px 0px $accentColor;
+            0 1px 0px #225c35, 
+            1px 0 0px #225c35, 
+            1px 2px 1px #225c35, 
+            2px 1px 1px #225c35, 
+            2px 3px 2px #225c35, 
+            3px 2px 2px #225c35, 
+            3px 4px 2px #225c35, 
+            4px 3px 3px #225c35, 
+            4px 5px 3px #225c35, 
+            5px 4px 2px #225c35, 
+            5px 6px 2px #225c35, 
+            6px 5px 2px #225c35, 
+            6px 7px 1px #225c35, 
+            7px 6px 1px #225c35, 
+            7px 8px 0px #225c35, 
+            8px 7px 0px #225c35;
         }
 }
 
