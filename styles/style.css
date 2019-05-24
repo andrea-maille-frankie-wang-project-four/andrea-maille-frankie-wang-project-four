@@ -175,6 +175,9 @@ img {
   margin: 0 auto; }
 
 fieldset {
+  border: none; }
+
+.header-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -190,9 +193,8 @@ fieldset {
   align-items: center;
   text-align: center;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  border: none; }
-  fieldset legend {
+  flex-wrap: wrap; }
+  .header-form legend {
     margin: 0 auto; }
 
 p {
@@ -209,8 +211,11 @@ button {
   background-color: #225c35;
   color: #f4f4f4; }
   button:hover {
-    background-color: #225c35;
-    color: #ffe438; }
+    color: #225c35;
+    background-color: #ffe438; }
+  button:active, button:focus {
+    color: #349052;
+    background-color: #ffe438; }
 
 header {
   width: 100%;
@@ -223,9 +228,9 @@ header {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -245,6 +250,7 @@ header {
     -ms-flex-align: center;
     align-items: center;
     text-align: center;
+    margin-top: 50px;
     width: 75%; }
 
 .header-title {
@@ -268,10 +274,6 @@ h1 {
 .game-categories {
   width: 100%; }
 
-[type="radio"] {
-  opacity: 0;
-  position: absolute; }
-
 .label-container {
   width: 80%;
   display: -webkit-box;
@@ -291,13 +293,93 @@ h1 {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
 
+.header-form [type="radio"] {
+  opacity: 0;
+  position: absolute; }
+  .header-form [type="radio"]:checked + label {
+    color: #f4f4f4;
+    background-color: #225c35; }
+
 .header-form label {
   width: 20%;
   margin: 10px;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   background-color: #ffe438;
   color: #225c35; }
+  .header-form label:hover {
+    color: #f4f4f4;
+    background-color: #225c35; }
+  .header-form label:active, .header-form label:focus {
+    color: #225c35;
+    background-color: #f4f4f4; }
+
+main {
+  background-color: #349052; }
+
+.game-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  text-align: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  .game-content .card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: space-between;
+    -ms-flex-align: space-between;
+    align-items: space-between;
+    text-align: center;
+    border: 5px solid #225c35;
+    background-color: rgba(255, 228, 56, 0.85);
+    border-radius: 120px 120px 20px 20px;
+    width: 30%;
+    height: 700px; }
+
+.product-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: space-between;
+  -ms-flex-align: space-between;
+  align-items: space-between;
+  text-align: center;
+  height: 600px; }
+  .product-info input {
+    margin-top: 20px; }
+
+.product-image {
+  border-radius: 50%;
+  border: 3px solid #225c35;
+  opacity: 0.9; }
 
 footer {
-  text-align: center; }
+  text-align: center;
+  color: #f4f4f4;
+  background-color: #349052; }
