@@ -1,7 +1,21 @@
 // namespace for app 
 const app = {};
+
 app.apiEndPoint = "https://api.walmartlabs.com/v1/search?";
 app.apiKey = "rk3f9sm8az24zz3wf7e5sesc";
+app.smoothScroll = function () {
+
+    $('.replay').smoothScroll({
+
+        autoFocus: false,
+
+        easing: 'swing',
+
+        speed: '400',
+
+    });
+
+},
 app.realPriceArray =[];
 
 app.htmlStringMaking = function (dataArray){
@@ -18,7 +32,7 @@ app.htmlStringMaking = function (dataArray){
         $('.game-content').append($card);
     })
     
-    const $submitGuess = $(`<button>Submit</button>`);
+    const $submitGuess = $(`<button class="submit-form">Submit</button>`);
 
     $('.game-content').append($submitGuess);
 }
@@ -35,12 +49,23 @@ app.selectCategory = function () {
             alert(`Please select your category of items`);
         } else {
             const selectedCategory = $('input[name=category]:checked').val();
-            app.apiCall(selectedCategory);
+            // app.apiCall(selectedCategory);
+            async function scrollDownApi (){ 
+                const status = await app.apiCall(selectedCategory);
+                console.log(status);
+                
+                if (status === true){
+                    $('html, body').animate({
+                    scrollTop: $('.game-content').offset().top
+                    }, 2000);
+                }
+            }
+            scrollDownApi();
         }
 
-        $('html, body').animate({
-            scrollTop: $('.game-content').offset().top
-        }, 3000);
+        // $('html, body').animate({
+        //     scrollTop: $('.game-content').offset().top
+        // }, 3000);
 
 
     })
@@ -104,9 +129,10 @@ app.apiCall = function(category) {
     }).fail(function(error){
         console.log("nah", error);
     })
+    return true;
 }
 app.storeUserInput =function (){
-    $("form.game-content").on("submit", function(event){
+    $("form.game-content").on("click", ".submit-form", function(event){
         event.preventDefault();
 
         const userGuessArray = $("input[type='text']").map(function(index, input){
@@ -136,6 +162,7 @@ app.storeUserInput =function (){
         
 
         if (notNumber === false) {
+            $(".submit-form").addClass("hide");
             for (let i = 0; i < userGuessArray.length; i++) {
                 const userGuessDecimal = +userGuessArray[i].toFixed(2);
                 
@@ -166,6 +193,7 @@ app.storeUserInput =function (){
                     alert("😢");
                 }
             }
+            $(".game-content").append("<button class='replay'>Replay</button>");
             
         } else {
             alert('Oops! Check your answers, again!');
@@ -178,13 +206,26 @@ app.storeUserInput =function (){
         
     })
 }
-
+app.resetGame = function(){
+    $("form.game-content").on("click", ".replay", function (event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: $('.header-content').offset().top
+        }, 500);
+        setTimeout(function(){
+            $(".game-content").empty()
+            console.log("settimeout worked");
+            
+        },1000);
+        
+    })
+}
 
 
 app.init = function() {
     app.selectCategory();
     app.storeUserInput();
-    
+    app.resetGame();
 }
 
 $(function(){
