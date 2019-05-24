@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Sansita:400,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Andika|Sansita:400,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="header-description">
-                <p>You are the next contestant on Guess of Price! Can you guess the correct price of these items sold at Walmart? Choose to
+                <p>You are the next contestant on Guess of Price! Can you guess the correct price of these items sold at Walmart without going over?Choose to
                 begin!
                 </p>
             </div>
@@ -29,14 +29,16 @@
             
             <div class="game-categories">
                 <form action="">
-                    <fieldset>
+                    <fieldset class="header-form">
                         <legend>Choose Your Category</legend>
-                        <label for="electronics">Electronics</label>
-                        <input type="radio" id="electronics" value="electronics" name="category">
-                        <label for="appliances">Appliances</label>
-                        <input type="radio" id="appliances" value="appliances" name="category">
-                        <label for="food">Food</label>
-                        <input type="radio" id="food" value="food" name="category">
+                        <div class="label-container">
+                            <label for="electronics">Electronics</label>
+                            <input type="radio" id="electronics" value="electronics" name="category">
+                            <label for="appliances">Appliances</label>
+                            <input type="radio" id="appliances" value="appliances" name="category">
+                            <label for="food">Food</label>
+                            <input type="radio" id="food" value="food" name="category">
+                        </div>
                         <button class="start-game">Start Game</button>
                     </fieldset>
                 </form>

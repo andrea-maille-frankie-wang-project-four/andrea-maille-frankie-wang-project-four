@@ -11,17 +11,40 @@ html {
 @mixin bodyFont ($size) {
     font-size: ($size/20) * 1rem;
     font-size: $size * 1px;
-    font-family: 'Arimo', sans-serif;
+    font-family: 'Andika', sans-serif;
 }
 
+h1,
+.header-form legend {
+    text-align: center;
+    color:$accentColor;
+    text-shadow: 
+    0 1px 0px $shadowColor, 
+    1px 0 0px $shadowColor, 
+    1px 2px 1px $shadowColor, 
+    2px 1px 1px $shadowColor, 
+    2px 3px 2px $shadowColor, 
+    3px 2px 2px $shadowColor, 
+    3px 4px 2px $shadowColor, 
+    4px 3px 3px $shadowColor, 
+    4px 5px 3px $shadowColor, 
+    5px 4px 2px $shadowColor, 
+    5px 6px 2px $shadowColor, 
+    6px 5px 2px $shadowColor, 
+    6px 7px 1px $shadowColor, 
+    7px 6px 1px $shadowColor, 
+    7px 8px 0px $shadowColor, 
+    8px 7px 0px $shadowColor;
+
+}
 h1 {
     @include displayFont(100);
+    line-height: 1.2;
+}
+.header-form legend {
+    @include displayFont(35);
 
 }
-
 p {
-    @include bodyFont(20);
-    margin:0; 
-    padding:0; 
+    @include bodyFont(20); 
 }
-
