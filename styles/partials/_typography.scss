@@ -17,7 +17,6 @@ html {
 h1,
 .header-form legend {
     text-align: center;
-    color:$accentColor;
     text-shadow: 
     0 1px 0px $secondaryColor, 
     1px 0 0px $secondaryColor, 
@@ -47,4 +46,7 @@ h1 {
 }
 p {
     @include bodyFont(20); 
+}
+footer {
+    @include bodyFont(18);
 }

@@ -143,7 +143,6 @@ html {
 h1,
 .header-form legend {
   text-align: center;
-  color: #ffe438;
   text-shadow: 0 1px 0px #225c35, 1px 0 0px #225c35, 1px 2px 1px #225c35, 2px 1px 1px #225c35, 2px 3px 2px #225c35, 3px 2px 2px #225c35, 3px 4px 2px #225c35, 4px 3px 3px #225c35, 4px 5px 3px #225c35, 5px 4px 2px #225c35, 5px 6px 2px #225c35, 6px 5px 2px #225c35, 6px 7px 1px #225c35, 7px 6px 1px #225c35, 7px 8px 0px #225c35, 8px 7px 0px #225c35; }
 
 h1 {
@@ -160,6 +159,11 @@ h1 {
 p {
   font-size: 1rem;
   font-size: 20px;
+  font-family: 'Andika', sans-serif; }
+
+footer {
+  font-size: 0.9rem;
+  font-size: 18px;
   font-family: 'Andika', sans-serif; }
 
 .hide {
@@ -204,7 +208,7 @@ p {
 button {
   display: block;
   width: 30%;
-  margin-top: 15px;
+  margin: 15px auto;
   padding: 10px;
   border: 3px solid #f4f4f4;
   border-radius: 3px;
@@ -262,7 +266,8 @@ header {
 
 h1,
 .header-form legend {
-  padding: 0px 25px; }
+  padding: 0px 25px;
+  color: #ffe438; }
 
 h1 {
   margin: 40px; }
@@ -315,6 +320,8 @@ h1 {
     background-color: #f4f4f4; }
 
 main {
+  padding-top: 150px;
+  color: #36393b;
   background-color: #349052; }
 
 .game-content {
@@ -328,9 +335,9 @@ main {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   text-align: center;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
@@ -352,8 +359,8 @@ main {
     border: 5px solid #225c35;
     background-color: rgba(255, 228, 56, 0.85);
     border-radius: 120px 120px 20px 20px;
-    width: 30%;
-    height: 700px; }
+    width: 32%;
+    height: 750px; }
 
 .product-info {
   display: -webkit-box;
@@ -379,7 +386,59 @@ main {
   border: 3px solid #225c35;
   opacity: 0.9; }
 
+.product-name {
+  border-top: 5px dotted #225c35;
+  border-bottom: 5px dotted #225c35;
+  line-height: 1.2; }
+
+input[name="user-guess"],
+input[name="user-guess"]::-webkit-input-placeholder {
+  border: 2px solid #225c35;
+  text-align: center;
+  color: #225c35; }
+
+input[name="user-guess"],
+input[name="user-guess"]:-ms-input-placeholder {
+  border: 2px solid #225c35;
+  text-align: center;
+  color: #225c35; }
+
+input[name="user-guess"],
+input[name="user-guess"]::-ms-input-placeholder {
+  border: 2px solid #225c35;
+  text-align: center;
+  color: #225c35; }
+
+input[name="user-guess"],
+input[name="user-guess"]::placeholder {
+  border: 2px solid #225c35;
+  text-align: center;
+  color: #225c35; }
+
+.game-results {
+  color: #f4f4f4;
+  background-color: #225c35;
+  padding-bottom: 10px; }
+
+i {
+  padding-top: 8px;
+  font-size: 40px; }
+
+.fa-laugh-squint,
+.fa-smile-beam {
+  color: greenyellow; }
+
+.fa-grin {
+  color: #ffe438; }
+
+.fa-frown {
+  color: red; }
+
+.fa-meh {
+  color: red; }
+
 footer {
+  padding-top: 10px;
   text-align: center;
   color: #f4f4f4;
-  background-color: #349052; }
+  background-color: #225c35; }

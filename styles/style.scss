@@ -3,22 +3,18 @@
 @import "partials/typography";
 
 // General Styles 
-
 .hide {
     display: none;
 }
-
 img {
     width:100%;
     max-width:100%;
 }
-
 .wrapper {
     width: 80%;
     max-width: 1440px; 
     margin: 0 auto;
 }
-
 fieldset {
     border:none;
 }
@@ -37,7 +33,7 @@ p {
 button {
     display: block;
     width: 30%;
-    margin-top: 15px;
+    margin: 15px auto;
     padding:10px;
     border:3px solid $white;
     border-radius: 3px;
@@ -76,6 +72,8 @@ header {
 h1,
 .header-form legend {
     padding:0px 25px;
+    color:$accentColor;
+
 
 }
 h1 {
@@ -124,13 +122,14 @@ h1 {
         }
     }
 }
-
+//main styles
 main {
-    background-color: $mainColor;
+    padding-top: 150px;
+    @include color($black, $mainColor);
 }
-
+//.game-content styles
 .game-content {
-    @include alignment (row, space-between, flex-start, center);
+    @include alignment (row, space-between, center, center);
     flex-wrap:wrap;
     .card{
         @include alignment (column, flex-end, space-between, center);
@@ -138,8 +137,8 @@ main {
         background-color: rgba(255, 228, 56, 0.85);
         border-radius: 120px 120px 20px 20px;
         // height:700px;
-        width: 30%;
-        height:700px;
+        width: 32%;
+        height:750px;
 
     }
 }
@@ -161,6 +160,11 @@ main {
     border: 3px solid $secondaryColor;
     opacity: 0.9;
 }
+.product-name {
+    border-top: 5px dotted $secondaryColor; 
+    border-bottom: 5px dotted $secondaryColor; 
+    line-height: 1.2;
+}
 // .priceTag{
 //   width: 500px;
 //   height:300px;
@@ -169,12 +173,39 @@ main {
 //   border:10px solid green;
 //   position:relative;
 // }
-
-
-
-footer { 
+input[name="user-guess"],
+input[name="user-guess"]::placeholder {
+    border:2px solid $secondaryColor;
     text-align: center;
-    @include color ($white, $mainColor,);
+    color:$secondaryColor;
+}
+
+.game-results {
+    @include color($white, $secondaryColor);
+    padding-bottom: 10px;
+}
+i {
+    padding-top: 8px;
+    font-size: 40px;
+
+}
+.fa-laugh-squint,
+.fa-smile-beam {
+    color:greenyellow;
+}
+.fa-grin {
+    color:$accentColor;
+}
+.fa-frown {
+    color:red;
+}
+.fa-meh {
+    color:red;
+}
+footer { 
+    padding-top:10px;
+    text-align: center;
+    @include color ($white, $secondaryColor,);
 }
 
 
