@@ -166,6 +166,11 @@ footer {
   font-size: 18px;
   font-family: 'Andika', sans-serif; }
 
+body {
+  max-width: 1600px;
+  margin: 0 auto;
+  background-color: #349052; }
+
 .hide {
   display: none; }
 
@@ -175,7 +180,7 @@ img {
 
 .wrapper {
   width: 80%;
-  max-width: 1440px;
+  max-width: 1600px;
   margin: 0 auto; }
 
 fieldset {
@@ -220,6 +225,9 @@ button {
   button:active, button:focus {
     color: #349052;
     background-color: #ffe438; }
+
+button.swal2-confirm {
+  padding: 10px 0; }
 
 header {
   width: 100%;
@@ -281,6 +289,7 @@ h1 {
 
 .label-container {
   width: 80%;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

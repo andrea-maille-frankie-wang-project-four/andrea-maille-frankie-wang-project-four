@@ -3,6 +3,11 @@
 @import "partials/typography";
 
 // General Styles 
+body {
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color:$mainColor;
+}
 .hide {
     display: none;
 }
@@ -12,7 +17,7 @@ img {
 }
 .wrapper {
     width: 80%;
-    max-width: 1440px; 
+    max-width: 1600px; 
     margin: 0 auto;
 }
 fieldset {
@@ -47,6 +52,9 @@ button {
     &:focus {
         @include color ($mainColor, $accentColor);
     }
+}
+button.swal2-confirm {
+    padding:10px 0;
 }
 // Header Styles 
 header {
@@ -93,6 +101,7 @@ h1 {
 
 .label-container {
     width:80%;
+    margin: 0 auto;
     @include alignment(row, center, center, center);
     flex-wrap: wrap;
 }

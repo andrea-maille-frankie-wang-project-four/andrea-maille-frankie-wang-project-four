@@ -22,26 +22,36 @@ app.htmlStringMaking = function (dataArray){
         $('.game-content').append($card);
     }
     const $submitGuess = $(`<button class="submit-form">Submit</button>`);
-    $('.game-content').append($submitGuess);
+    $('.game-content').append($submitGuess).addClass('game-shown');
 }
-//using an event listener to store users' category choice and scroll down to game interface after api call has finished
+//using an event listener to store users' category choice and scroll down to game interface after api call has finished. The game content won't load again unless users finish the game. If users click the button without choosing a category, an alert will prompt them to select one.
 app.selectCategory = function () {
     $('.start-game').on('click', function(event){
         event.preventDefault();
         const category = $('input[name=category]:checked').val();
-        if (category === undefined){
-            alert(`Please select your category of items`);
-        } else {
+        if (category !== undefined && $('.game-content').hasClass("game-shown") === false){
             const selectedCategory = $('input[name=category]:checked').val();
-            async function scrollDownApi (){ 
+            async function scrollDownApi() {
                 const status = await app.apiCall(selectedCategory);
-                if (status === true){
+                if (status === true) {
                     $('html, body').animate({
-                    scrollTop: $('.game-content').offset().top
+                        scrollTop: $('.game-content').offset().top
                     }, 2000);
                 }
             }
             scrollDownApi();
+        } else if ($('.game-content').hasClass("game-shown")) {
+            $('html, body').animate({
+                scrollTop: $('.game-content').offset().top
+            }, 1000);
+        }else {
+            Swal.fire({
+                title: 'Ooops',
+                background: '#ffe438',
+                text: 'Please select a category to continue',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#349052',
+            })
         }
     })
 }
@@ -50,7 +60,7 @@ app.randomChooseThree = function (dataArray) {
     const indexArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     const chosenIndexArray = [];
     for (i = 1; i <= 3; i++) {
-        const chosenIndex = Math.floor((Math.random() * (19 - i)) + 1);
+        const chosenIndex = Math.floor((Math.random() * (20 - i)) + 1);
         chosenIndexArray.push(indexArray[chosenIndex]);
         indexArray[chosenIndex] = indexArray[20 - i];
     }
@@ -60,7 +70,7 @@ app.randomChooseThree = function (dataArray) {
     })
     return selectedItems ;
 }
-//ajax calling api and process the raw data to make it more usable, then we call randomChooseThree method to get three products, changing currency to Canadian dollars, display game interface for users
+//ajax calling api and process the raw data to make it more usable, then we call randomChooseThree method to get three products, changing currency to Canadian dollars, display game interface for users. if the api call fails, show an alert for users.
 app.apiCall = function(category) {
     $.ajax({
         url: app.apiEndPoint,
@@ -77,7 +87,7 @@ app.apiCall = function(category) {
         const totalArrayRaw = data.items; 
         const totalArray = totalArrayRaw.filter(item=>item.salePrice!==undefined);
         const threeItems = app.randomChooseThree(totalArray);
-        //it will hold a retail price array for later usages
+        //it will hold a retail price array scoped on the app object for later usages
         app.realPriceArray = [];
         threeItems.forEach(item=>{
          app.realPriceArray.push(+(item.salePrice * 1.35).toFixed(2));
@@ -85,11 +95,17 @@ app.apiCall = function(category) {
         console.log(app.realPriceArray);
         app.htmlStringMaking(threeItems);
     }).fail(function(error){
-        alert("Sorry😢 api call failed, check back later please");
+        Swal.fire({
+            title: 'Aaah',
+            background: '#ffe438',
+            text: '😢Sorry, failed to get API data back, please check back later.',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#349052',
+        })
     })
     return true;
 }
-//after users submit the form, store users' input. Then, check if users have completed the form correctly, if not, prompt them to do so; if yes, render the results for them including the actual price and the difference between their guess and the sale price, providing them with a reset button at the same time.
+//after users submit the form, store users' input. Then, check if users have completed the form correctly, if not, prompt them to do so with an alert; if yes, render the results for them including the actual price and the difference between their guess and the sale price, providing them with a reset button at the same time.
 app.storeUserInput =function (){
     $("form.game-content").on("click", ".submit-form", function(event){
         event.preventDefault();
@@ -151,7 +167,13 @@ app.storeUserInput =function (){
             }
             $(".game-content").append("<button class='replay'>Replay</button>");
         } else {
-            alert('Oops! Check your answers, again!');
+            Swal.fire({
+                title: 'Oops',
+                background: '#ffe438',
+                text: 'Please check your answers!',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#349052',
+            })
         }
     })
 }
@@ -163,7 +185,7 @@ app.resetGame = function(){
             scrollTop: $('.header-content').offset().top
         }, 500);
         setTimeout(function(){
-            $(".game-content").empty();            
+            $(".game-content").empty().removeClass('game-shown');            
         },500);
     })
 }
