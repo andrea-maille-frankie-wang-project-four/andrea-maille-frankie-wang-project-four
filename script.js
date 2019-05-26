@@ -6,16 +6,27 @@ app.apiKey = "rk3f9sm8az24zz3wf7e5sesc";
 //print gaming interface using data from api call to DOM (with html strings and append them accordingly)
 app.htmlStringMaking = function (dataArray){
     $('.game-content').empty();
+    let counter = 1;
     for(i=0;i<dataArray.length;i++){
         const data = dataArray[i];
-        const $card = $('<fieldset>').addClass('card');
-        const $productInfo = $('<div>').addClass('product-info');
+        const $card = $('<fieldset>').addClass('card').attr(`tabindex`, `${2+counter}`);
+        counter++
+        const $productInfo = $('<div>').addClass('product-info').attr(`tabindex`,`${2 + counter}`);
+        counter++
         const $imageContainer = $('<div>').addClass('image-container');
         const $image = $(`<img class="product-image">`).attr('src',data.largeImage).attr("alt", "");
-        const $name = $(`<p class="product-name">${data.name}</p>`);
-        const $userGuessLabel = $(`<label for="user-guess" class="visually-hidden">Place your guess here</label>`); 
+        const $name = $(`<p class="product-name">${data.name}</p>`).attr(`tabindex`,`${2 + counter}`);
+        counter++
+        const $userGuessLabel = $(`<label for="user-guess" class="visually-hidden">Place your guess here</label>`).attr(`tabindex`,`${2 + counter}`); 
         const $userGuess = $(`<input type="text" id="user-guess" name="user-guess" placeholder="$0.00"></input>`);
-        const $gameResults = $('<div>').addClass('game-results').addClass(`game-results-${i+1}`);
+        counter++
+        const $gameResults = $('<div>').addClass(`game-results game-results-${i + 1}`).attr({
+            "tabindex":`${2+counter}`,
+            "aria-live":"polite",
+            "role":"status"
+
+        })
+        counter++
         $imageContainer.append($image);
         $productInfo.append($imageContainer, $name, $userGuessLabel, $userGuess);
         $card.append($productInfo, $gameResults);
