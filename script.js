@@ -27,6 +27,7 @@ app.htmlStringMaking = function (dataArray){
 
         })
         counter++
+        //comment testing
         $imageContainer.append($image);
         $productInfo.append($imageContainer, $name, $userGuessLabel, $userGuess);
         $card.append($productInfo, $gameResults);
