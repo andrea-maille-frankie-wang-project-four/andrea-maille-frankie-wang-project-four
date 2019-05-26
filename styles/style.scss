@@ -1,6 +1,7 @@
 @import "partials/setup";
 @import "partials/variables";
 @import "partials/typography";
+@import "partials/keyframes";
 
 // General Styles 
 body {
@@ -37,13 +38,12 @@ p {
 i {
     padding-top: 8px;
     font-size: 40px;
-
 }
 
 button {
     @include color ($white, $secondaryColor);
     width: 30%;
-    margin: 15px auto;
+    margin: 10px auto;
     padding:10px;
     display: block;
     border:3px solid $white;
@@ -58,20 +58,16 @@ button {
     }
 }
 
-
-
 // Styling for Sweet Alerts
 button.swal2-confirm {
     padding:10px 0;
 }
 
 // Header Styles 
-
 h1,
 .header-form legend {
     padding:0px 10%;
     color:$accentColor;
-
 }
 
 h1 {
@@ -87,11 +83,6 @@ header {
         width:75%;
         margin-top:15px;
     }  
-    .header-form {
-        legend {
-            display: block;
-        }
-    }
 }
 
 .header-title {
@@ -100,7 +91,7 @@ header {
     border-radius: 10px;
 }
 
-.header-description p{
+.header-description p {
     color:$white;
     padding:10px 20px;
 }
@@ -113,21 +104,31 @@ header {
 
 .category-choices {
     @include alignment (row, center, center, center);
-
     [type="radio"] {
         opacity: 0;
         position: absolute;
         &:checked + label {
             @include color ($white, $secondaryColor);
+            box-shadow: 
+            -1px 1px $black, 
+            -2px 2px $black, 
+            -3px 3px $black, 
+            -4px 4px $black, 
+            -5px 5px $black, 
+            -6px 6px $black, 
+            -7px 7px $black, 
+            -8px 8px $black;
+            transform: translateX(8px) translateY(-8px);
+            // this box-shadow was adapted from http://animista.net/play/basic/shadow-pop/shadow-pop-tl 
         }
     }
-
     label {
         @include color ($secondaryColor, $accentColor);
         width:20%;
-        margin:10px;
+        margin:15px 10px;
         padding:10px;
         border-radius: 5px;
+        transition: all 0.2s ease; 
         &:hover{
             @include color ($white, $secondaryColor);
         }
@@ -138,11 +139,10 @@ header {
     }
 }
 
-
-//Main styles - Dynamic Content
+//Main styles and Dynamic Content Styles
 
 main {
-    padding-top: 150px;
+    padding-top: 300px;
     @include color($black, $mainColor);
 }
 
@@ -153,42 +153,41 @@ main {
         @include alignment (column, flex-end, space-between, center);
         border: 5px solid $secondaryColor;
         background-color: rgba(255, 228, 56, 0.85);
-        border-radius: 120px 120px 20px 20px;
-        width: 32%;
+        border-radius: 110px 110px 20px 20px;
+        width: 32.5%;
     }
 }
 
 .product-info {
-    @include alignment (column, space-around, flex-end, center);
+    @include alignment (column, space-between, flex-end, center);
     height:400px;
     position: relative;
-    .image-container{
-        width:100%;
-        height:175px;
-        .product-image {
-            border-radius:50%;
-            border: 3px solid $secondaryColor;
-            position: absolute;
-            top:-28%;
-            left:0;
-            right:0;
-            background-color:$white;
-        }
-    }
-
     .product-name {
+        margin:0 auto;
         border-top: 5px dotted $secondaryColor; 
         border-bottom: 5px dotted $secondaryColor; 
         line-height: 1.2;
     }
-
     input {
         margin-top:20px;
         width:100%;
+        padding:3px;
     }
 }
 
-
+.image-container{
+    width:100%;
+    height:175px;
+    .product-image {
+        border-radius:50%;
+        border: 3px solid $secondaryColor;
+        position: absolute;
+        top:-28%;
+        left:0;
+        right:0;
+        background-color:$white;
+    }
+}
 input[name="user-guess"],
 input[name="user-guess"]::placeholder {
     border:2px solid $secondaryColor;
@@ -225,26 +224,31 @@ footer {
     @include color ($white, $secondaryColor,);
 }
 
+// Media Queries
+
 @media(max-width:1200px) {
+    .game-content {
+        @include alignment (row, flex-end, flex-end, center);
+    }
     .product-info {
         position: static;
         height:100%;
-        .image-container {
-            height:100%;
-            .product-image {
-                position:static;
-                
-            }
+    }
+    .image-container {
+        height: 100%;
+        margin: 30px 0;
+        .product-image {
+            position:static;
         }
     }
     .game-results {
+        border:none;
         padding-bottom: 10px;
         height: 100%;
     }
     i {
     padding-bottom:2px;
     }
-
 }
 
 @media (max-width:900px) {
@@ -252,8 +256,12 @@ footer {
         width:90%;
         padding:5px;
     }
+    .header-title{
+        border: 8px dotted $white;
+    }
     h1 {
-        margin:20px;
+        margin:10px;
+        padding-bottom:10px;
     }
     .game-content {
         display: block;
@@ -263,7 +271,7 @@ footer {
         }
     }
     .product-info {
-    align-items:center;
+        align-items:center;
     }
     .product-results {
         height: auto;
@@ -278,13 +286,20 @@ footer {
 }
 
 @media (max-width:600px) {
-
-    header .header-title{
-        margin-top:50px;
+    .header-title{
+        margin-top:20px;
     }  
-
     .header-description p{
         padding:2px 5px;
+    }
+    .header-form legend {
+        padding:0;
+        margin: 5px 0;
+    }
+    .start-game {
+        margin-top:3px;
+        border:2px solid $white;
+        padding:5px;
     }
 }
 @media (max-width:550px) {
@@ -295,9 +310,8 @@ footer {
         @include alignment (column, center, center, center);
         label {
             width:70%;
-            margin:5px 0;
-            padding:6px;
+            margin:6px 0;
+            padding:5px;
         }
     }
-
 }

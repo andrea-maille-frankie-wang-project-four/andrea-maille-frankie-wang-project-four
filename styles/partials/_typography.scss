@@ -34,16 +34,18 @@ h1,
     7px 6px 1px $secondaryColor, 
     7px 8px 0px $secondaryColor, 
     8px 7px 0px $secondaryColor;
-
+    // this text-shadow was adapted from this generator: https://html-css-js.com/css/generator/text-shadow/
 }
+
 h1 {
     @include displayFont(100);
     line-height:0.9;
 }
+
 .header-form legend {
     @include displayFont(35);
-
 }
+
 p {
     @include bodyFont(20); 
     line-height:1.2;
@@ -54,29 +56,25 @@ footer {
 }
 
 
+// Media Queries
 @media (max-width:1375px) {
     h1 {
         @include displayFont(65);
     }
-
 }  
 
 @media (max-width:900px) {
     h1 {
         @include displayFont(50);
     }
-
     p {
     @include bodyFont(18); 
-
     }
 }
+
 @media (max-width:550px) {
-    p {
-        @include bodyFont(16);
-    }
     .header-form legend {
-        @include bodyFont(20);
+        @include bodyFont(28);
+        line-height: 0.9;
     }
-    
 }

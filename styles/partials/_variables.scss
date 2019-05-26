@@ -3,11 +3,8 @@
 $mainColor: #349052;
 $accentColor: #ffe438;
 $secondaryColor: #225c35;
-// $secondaryColor: #79b791;
 $white: #f4f4f4;
 $black: #36393b;
-
-$border: 4px solid $white;
 
 @mixin alignment ($flex-direction, $justify-content, $align-items, $text-align) {
     display: flex;
@@ -21,5 +18,3 @@ $border: 4px solid $white;
     color: $color;
     background-color: $background-color;
 }
-
-
