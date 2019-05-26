@@ -51,6 +51,7 @@ p {
 
 footer {
     @include bodyFont(18);
+    line-height: 1.05;
 }
 
 
@@ -71,5 +72,12 @@ footer {
 
     }
 }
-
-
+@media (max-width:550px) {
+    p {
+        @include bodyFont(16);
+    }
+    .header-form legend {
+        @include bodyFont(20);
+    }
+    
+}

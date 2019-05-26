@@ -165,7 +165,8 @@ p {
 footer {
   font-size: 0.9rem;
   font-size: 18px;
-  font-family: 'Andika', sans-serif; }
+  font-family: 'Andika', sans-serif;
+  line-height: 1.05; }
 
 @media (max-width: 1375px) {
   h1 {
@@ -183,14 +184,25 @@ footer {
     font-size: 18px;
     font-family: 'Andika', sans-serif; } }
 
+@media (max-width: 550px) {
+  p {
+    font-size: 0.8rem;
+    font-size: 16px;
+    font-family: 'Andika', sans-serif; }
+  .header-form legend {
+    font-size: 1rem;
+    font-size: 20px;
+    font-family: 'Andika', sans-serif; } }
+
 body {
   max-width: 1600px;
   margin: 0 auto;
   background-color: #349052; }
 
 img {
-  width: 100%;
-  max-width: 100%; }
+  width: 85%;
+  max-width: 85%;
+  margin: 0 auto; }
 
 .wrapper {
   width: 80%;
@@ -373,14 +385,16 @@ main {
   height: 400px;
   position: relative; }
   .product-info .image-container {
+    width: 100%;
     height: 175px; }
     .product-info .image-container .product-image {
       border-radius: 50%;
       border: 3px solid #225c35;
       position: absolute;
-      top: -35%;
+      top: -28%;
       left: 0;
-      right: 0; }
+      right: 0;
+      background-color: #f4f4f4; }
   .product-info .product-name {
     border-top: 5px dotted #225c35;
     border-bottom: 5px dotted #225c35;
@@ -434,6 +448,7 @@ input[name="user-guess"]::placeholder {
 
 footer {
   padding-top: 10px;
+  padding-bottom: 5px;
   text-align: center;
   color: #f4f4f4;
   background-color: #225c35; }
@@ -444,8 +459,35 @@ footer {
   h1 {
     margin: 20px; } }
 
+@media (max-width: 700px) {
+  .category-choices label {
+    width: 35%; } }
+
 @media (max-width: 600px) {
   header .header-title {
     margin-top: 50px; }
   .header-description p {
     padding: 2px 5px; } }
+
+@media (max-width: 550px) {
+  button {
+    width: 60%; }
+  .category-choices {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center; }
+    .category-choices label {
+      width: 70%;
+      margin: 5px 0;
+      padding: 6px; } }
