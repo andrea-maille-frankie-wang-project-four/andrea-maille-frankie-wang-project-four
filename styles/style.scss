@@ -224,16 +224,13 @@ footer {
     text-align: center;
     @include color ($white, $secondaryColor,);
 }
-@media (max-width:1300px) {
-    // .product-info {
-    //     height: 355px;
-    // }
-}
+
 @media(max-width:1200px) {
     .product-info {
         position: static;
-        height:auto;
+        height:100%;
         .image-container {
+            height:100%;
             .product-image {
                 position:static;
                 
@@ -241,11 +238,13 @@ footer {
         }
     }
     .game-results {
-        height: 200px;
+        padding-bottom: 10px;
+        height: 100%;
     }
     i {
     padding-bottom:2px;
     }
+
 }
 
 @media (max-width:900px) {

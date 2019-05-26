@@ -455,11 +455,14 @@ footer {
 @media (max-width: 1200px) {
   .product-info {
     position: static;
-    height: auto; }
-    .product-info .image-container .product-image {
-      position: static; }
+    height: 100%; }
+    .product-info .image-container {
+      height: 100%; }
+      .product-info .image-container .product-image {
+        position: static; }
   .game-results {
-    height: 200px; }
+    padding-bottom: 10px;
+    height: 100%; }
   i {
     padding-bottom: 2px; } }
 
