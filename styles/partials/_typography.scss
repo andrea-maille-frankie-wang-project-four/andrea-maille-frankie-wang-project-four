@@ -38,7 +38,7 @@ h1,
 }
 h1 {
     @include displayFont(100);
-    line-height: 1.2;
+    line-height:0.9;
 }
 .header-form legend {
     @include displayFont(35);
@@ -46,7 +46,30 @@ h1 {
 }
 p {
     @include bodyFont(20); 
+    line-height:1.2;
 }
+
 footer {
     @include bodyFont(18);
 }
+
+
+@media (max-width:1375px) {
+    h1 {
+        @include displayFont(65);
+    }
+
+}  
+
+@media (max-width:900px) {
+    h1 {
+        @include displayFont(50);
+    }
+
+    p {
+    @include bodyFont(18); 
+
+    }
+}
+
+

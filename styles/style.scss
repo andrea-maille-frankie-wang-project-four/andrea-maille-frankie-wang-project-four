@@ -8,105 +8,111 @@ body {
     margin: 0 auto;
     background-color:$mainColor;
 }
-.hide {
-    display: none;
-}
+
 img {
     width:100%;
     max-width:100%;
 }
+
 .wrapper {
     width: 80%;
     max-width: 1600px; 
     margin: 0 auto;
 }
+
+.hide {
+    display: none;
+}
+
 fieldset {
     border:none;
 }
-.header-form {
-    @include alignment (row, center, center, center);
-    flex-wrap: wrap;
-    
-    legend {
-        margin: 0 auto;
-    }
-}
+
 p {
     margin:0; 
     padding:0;
 }
+
+i {
+    padding-top: 8px;
+    font-size: 40px;
+
+}
+
 button {
-    display: block;
+    @include color ($white, $secondaryColor);
     width: 30%;
     margin: 15px auto;
     padding:10px;
+    display: block;
     border:3px solid $white;
     border-radius: 3px;
-    background-color:$secondaryColor;
-    color:$white;
+    transition: background 0.5s ease;
     &:hover {
         @include color ($secondaryColor, $accentColor);
     }
-
     &:active, 
     &:focus {
         @include color ($mainColor, $accentColor);
     }
 }
+
+
+
+// Styling for Sweet Alerts
 button.swal2-confirm {
     padding:10px 0;
 }
+
 // Header Styles 
+
+h1,
+.header-form legend {
+    padding:0px 10%;
+    color:$accentColor;
+
+}
+
+h1 {
+    margin:50px;
+}
+
 header {
+    @include alignment (column, center, center, center);
     width:100%;
     height:100vh;
     background-color:$mainColor;
-    @include alignment (column, flex-start, center, center);
-
     .header-content {
-        @include alignment (column, center, center, center);
-        margin-top:50px;
         width:75%;
+        margin-top:15px;
+    }  
+    .header-form {
+        legend {
+            display: block;
+        }
     }
 }
 
 .header-title {
-    width:100%;
-    display: block;
     margin-bottom: 15px;
     border: 10px dotted $white;
     border-radius: 10px;
 }
-h1,
-.header-form legend {
-    padding:0px 25px;
-    color:$accentColor;
 
+.header-description p{
+    color:$white;
+    padding:10px 20px;
+}
 
-}
-h1 {
-    margin:40px;
-}
-.header-description {
-    p{
-        color:$white;
-        padding:20px 20px 0;
-    }
-}
-// Form - Categories 
-.game-categories {
+.header-form, 
+.header-form legend,
+.category-choices {
     width:100%;
 }
 
+.category-choices {
+    @include alignment (row, center, center, center);
 
-.label-container {
-    width:80%;
-    margin: 0 auto;
-    @include alignment(row, center, center, center);
-    flex-wrap: wrap;
-}
-
-.header-form {
     [type="radio"] {
         opacity: 0;
         position: absolute;
@@ -116,12 +122,11 @@ h1 {
     }
 
     label {
+        @include color ($secondaryColor, $accentColor);
         width:20%;
         margin:10px;
         padding:10px;
         border-radius: 5px;
-        background-color:$accentColor;
-        color:$secondaryColor;
         &:hover{
             @include color ($white, $secondaryColor);
         }
@@ -131,12 +136,15 @@ h1 {
         }
     }
 }
-//main styles
+
+
+//Main styles - Dynamic Content
+
 main {
     padding-top: 150px;
     @include color($black, $mainColor);
 }
-//.game-content styles
+
 .game-content {
     @include alignment (row, space-between, center, center);
     flex-wrap:wrap;
@@ -145,43 +153,39 @@ main {
         border: 5px solid $secondaryColor;
         background-color: rgba(255, 228, 56, 0.85);
         border-radius: 120px 120px 20px 20px;
-        // height:700px;
         width: 32%;
-        height:750px;
-
     }
 }
-
-// .image-container {
-    
-// }
 
 .product-info {
-    @include alignment (column, space-between, space-between, center);
-    height:600px;
+    @include alignment (column, space-around, flex-end, center);
+    height:400px;
+    position: relative;
+    .image-container{
+        height:175px;
+        .product-image {
+            border-radius:50%;
+            border: 3px solid $secondaryColor;
+            position: absolute;
+            top:-35%;
+            left:0;
+            right:0;
+        }
+    }
+
+    .product-name {
+        border-top: 5px dotted $secondaryColor; 
+        border-bottom: 5px dotted $secondaryColor; 
+        line-height: 1.2;
+    }
+
     input {
         margin-top:20px;
+        width:100%;
     }
 }
 
-.product-image {
-    border-radius:50%;
-    border: 3px solid $secondaryColor;
-    opacity: 0.9;
-}
-.product-name {
-    border-top: 5px dotted $secondaryColor; 
-    border-bottom: 5px dotted $secondaryColor; 
-    line-height: 1.2;
-}
-// .priceTag{
-//   width: 500px;
-//   height:300px;
-//   background-color: yellow;
-//   border-radius: 100px 20px 20px 100px;
-//   border:10px solid green;
-//   position:relative;
-// }
+
 input[name="user-guess"],
 input[name="user-guess"]::placeholder {
     border:2px solid $secondaryColor;
@@ -191,13 +195,11 @@ input[name="user-guess"]::placeholder {
 
 .game-results {
     @include color($white, $secondaryColor);
-    padding-bottom: 10px;
+    border: 4px solid $mainColor;
+    height:175px;
 }
-i {
-    padding-top: 8px;
-    font-size: 40px;
 
-}
+// Icons Colors
 .fa-laugh-squint,
 .fa-smile-beam {
     color:greenyellow;
@@ -211,6 +213,8 @@ i {
 .fa-meh {
     color:red;
 }
+
+// Footer
 footer { 
     padding-top:10px;
     text-align: center;
@@ -218,3 +222,26 @@ footer {
 }
 
 
+@media (max-width:900px) {
+    header .header-content {
+        width:90%;
+    }
+
+
+    h1 {
+        margin:20px;
+    }
+
+
+} 
+
+@media (max-width:600px) {
+
+    header .header-title{
+        margin-top:50px;
+    }  
+
+    .header-description p{
+        padding:2px 5px;
+    }
+}
