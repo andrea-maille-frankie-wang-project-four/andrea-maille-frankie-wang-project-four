@@ -74,6 +74,12 @@ h1 {
     margin:50px;
 }
 
+// animation for h1
+.bounce-in-top {
+    -webkit-animation: bounce-in-top 1.1s both;
+    animation: bounce-in-top 1.1s both;
+}
+
 header {
     @include alignment (column, center, center, center);
     width:100%;
