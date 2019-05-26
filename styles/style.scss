@@ -224,18 +224,52 @@ footer {
     text-align: center;
     @include color ($white, $secondaryColor,);
 }
+@media (max-width:1300px) {
+    // .product-info {
+    //     height: 355px;
+    // }
+}
+@media(max-width:1200px) {
+    .product-info {
+        position: static;
+        height:auto;
+        .image-container {
+            .product-image {
+                position:static;
+                
+            }
+        }
+    }
+    .game-results {
+        height: 200px;
+    }
+    i {
+    padding-bottom:2px;
+    }
+}
 
 @media (max-width:900px) {
     header .header-content {
         width:90%;
+        padding:5px;
     }
-
-
     h1 {
         margin:20px;
     }
-
-
+    .game-content {
+        display: block;
+        .card {
+            width:100%;
+            margin:0 auto 30px;
+        }
+    }
+    .product-info {
+    align-items:center;
+    }
+    .product-results {
+        height: auto;
+        padding-bottom:20px;
+    }
 } 
 
 @media (max-width:700px) {

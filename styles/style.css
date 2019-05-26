@@ -165,8 +165,7 @@ p {
 footer {
   font-size: 0.9rem;
   font-size: 18px;
-  font-family: 'Andika', sans-serif;
-  line-height: 1.05; }
+  font-family: 'Andika', sans-serif; }
 
 @media (max-width: 1375px) {
   h1 {
@@ -453,11 +452,35 @@ footer {
   color: #f4f4f4;
   background-color: #225c35; }
 
+@media (max-width: 1200px) {
+  .product-info {
+    position: static;
+    height: auto; }
+    .product-info .image-container .product-image {
+      position: static; }
+  .game-results {
+    height: 200px; }
+  i {
+    padding-bottom: 2px; } }
+
 @media (max-width: 900px) {
   header .header-content {
-    width: 90%; }
+    width: 90%;
+    padding: 5px; }
   h1 {
-    margin: 20px; } }
+    margin: 20px; }
+  .game-content {
+    display: block; }
+    .game-content .card {
+      width: 100%;
+      margin: 0 auto 30px; }
+  .product-info {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+  .product-results {
+    height: auto;
+    padding-bottom: 20px; } }
 
 @media (max-width: 700px) {
   .category-choices label {
